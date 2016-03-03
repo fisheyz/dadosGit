@@ -16,12 +16,29 @@ class Matriz {
 
     // leitura dos NLxNC elementos da matriz
 
-    public void matrixShow(Matriz m){
+    public static void matrixShow(Matriz m){
 	for (int lin = 0; lin < m.NL; lin++){
 	    System.out.println();
 	    for (int col=0; col < m.NC; col++)
-		System.out.print(m[lin][col] + " ");
+		System.out.print(m.A[lin][col] + " ");
 	}
+    }
+
+    public static Matriz matrixProd(Matriz m, Matriz n){
+	if (m.NC != n.NL){
+	    System.out.print("cannot multiply");
+	    return System.out.println("cannot");
+	}
+	Matriz mn = new Matriz(m.NC, n.NL);
+	for(int lin=0; lin < m.NC; lin++)
+	    for(int col=0; col<n.NL; col++){
+		int sum=0;
+		for(int k=0; k<m.NC; k++)
+		    sum = sum + m.A[lin][k]*n.A[k][col];
+		mn.A[lin][col]=sum;
+
+	    }
+	return mn;
     }
     public void leMatriz(Scanner in) {
 	
@@ -42,6 +59,8 @@ class Matriz {
 	    }
 	return maior;
     }
+
+    
 }
 
 // classe principal do programa
@@ -66,5 +85,8 @@ class MatTest {
 
 	//calcula o maior elemento da matriz e escreve-o
 	System.out.printf("Maior valor da matriz: %d\n", a.maiorElemento());
+	Matriz.matrixShow(Matriz.matrixProd(a, a));
+	System.out.println();
+
     }
 }
