@@ -12,19 +12,20 @@ class spiral{
     int y=0;
     int k=0;
 
+
     while(count<n ){
       k++;
-      for(int i=0; i < k && count <=n;  count++, i++){x++;}
-      System.out.println(x+""+""+y);
+      for(int i=0; i < k && count <n;  count++, i++){x++;}
 
-      for(int i=0; i<k && count <=n; count++, i++){y--;}
-      System.out.println(x+""+""+y);
+
+      for(int i=0; i<k && count <n; count++, i++){y--;}
+
       k++;
-      for(int i=0; i<k && count <=n;  count++, i++){x--;}
-      System.out.println(x+""+""+y);
-      for(int i=0; i<k && count <=n; count++, i++){y++;}
-      System.out.println(x+""+""+y);
+      for(int i=0; i<k && count <n;  count++, i++){x--;}
+
+      for(int i=0; i<k && count <n; count++, i++){y++;}
+      
     }
-    System.out.println( y+ "" + " "+x);
+    System.out.println( x+ "" + " "+y);
   }
 }
