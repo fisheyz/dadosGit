@@ -24,8 +24,8 @@ class spiral{
       for(int i=0; i<k && count <n;  count++, i++){x--;}
 
       for(int i=0; i<k && count <n; count++, i++){y++;}
-      
+
     }
-    System.out.println( x+ "" + " "+y);
+    System.out.println("("+x+ "," +y+")");
   }
 }
