@@ -22,7 +22,7 @@ class los{
         j--;
         else
         j++;
-      
+
         k--;
     }
   }
