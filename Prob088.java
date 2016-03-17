@@ -20,26 +20,32 @@ class Game {
 	for (int i=0; i<rows; i++)
 	    m[i] = in.next().toCharArray();
     }
-    
+
     // Metodo para escrever a matriz m[][]
     public void write() {
 	for (int i=0; i<rows; i++){
-	    System.out.println();
 	    for (int j=0; j<cols; j++)
-		System.out.print(m[i][j]);
-	} 
-	System.out.println();
+		System.out.print(m[i][j] );
+	    System.out.println();
+	}
+	
 
     }
 
     // Deve devolver o numero de celulas vivas que sao vizinhas de (y,x)
     public int countAlive(int y, int x) {
 	int count = 0;
-	for(int i = y-1; i<=y+1 && i<rows ;i++)
-	    for(int j=x-1;j<=x+1 && j<cols; j++)
-		    if ( m[i][j]=='o') 
+	for(int i = y-1; i<=y+1 && i<rows ;i++){
+	   
+	    for(int j=x-1;j<=x+1 && j<cols; j++){
+		//	System.out.println(i +", "+ j);
+		if (i>=0 && j>= 0 &&  m[i][j]=='O') 
+		    if (!(i==y&&j==x))
 			count++;
-	return count-1;
+	    }
+	}
+	return count;
+
     }
 
     // Deve fazer uma iteracao: cria nova geracao a partir da actual
@@ -47,13 +53,16 @@ class Game {
 	char m2[][]=new char[rows][cols];
 	for(int i=0; i<rows;i++)
 	    for(int j=0; j<cols;j++){
-		if (m[i][j] == 'o' && countAlive(i, j) == 2 || countAlive(i, j) == 3) 
-		    m2[i][j] = 'o';
-		else 
+		if (m[i][j] == 'O' && countAlive(i, j) == 2 || countAlive(i, j) == 3)
+		    m2[i][j] = 'O';
+		else
 		    m2[i][j] = '.';
 		if (m[i][j] == '.' && countAlive(i, j) == 3)
-		    m2[i][j] = 'o';
-	    }	 		      
+		    m2[i][j] = 'O';
+	    }
+	for(int i=0;i<rows;i++)
+	    for(int j=0;j<cols;j++)
+		m[i][j]=m2[i][j];
     }
 
 }
@@ -71,8 +80,13 @@ public class Prob088 {
 	// Criar objecto para conter o jogo e ler estado inicial
 	Game g = new Game(rows, cols);
 	g.read(in);
+	for(int i=0;i<n;i++){
+	    
+	    g.iterate();
+	   
+	}
+   
 	g.write();
-	System.out.println("count=" + g.countAlive(1, 1));
-	//... por completar
+	 //... por completar
     }
 }
